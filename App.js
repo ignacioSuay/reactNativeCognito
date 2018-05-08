@@ -1,29 +1,16 @@
 import React from 'react';
-import Login from './screens/Login'
-import Details from './screens/Details'
-import {StackNavigator} from 'react-navigation';
+import AppContainer from './components/AppContainer'
+import reducer from './reducer';
+import {createStore} from 'redux'
+import {Provider} from 'react-redux';
 
+var store = createStore(reducer);
 
-export default class App extends React.Component {
+const app = () => (
 
-    render() {
-        console.log("rerender");
-        return (
-            <RootStack/>
-        );
-    }
-}
-
-const RootStack = StackNavigator(
-    {
-        Login: {
-            screen: Login,
-        },
-        Details: {
-            screen: Details,
-        }
-    },
-    {
-        initialRouteName: 'Login',
-    }
+    <Provider store={store}>
+        <AppContainer/>
+    </Provider>
 );
+
+export default app;
