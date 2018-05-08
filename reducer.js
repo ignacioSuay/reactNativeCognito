@@ -7,9 +7,9 @@ function reducer(state, action) {
     var role = state.role;
 
     switch (action.type) {
-        case "addRole":
-            return {role: role.concat(action.role)};
-        case "removeRole":
+        case "ADD_ROLE":
+            return {role: action.role};
+        case "REMOVE_ROLE":
             return {role: ["anonymous"]};
         default:
             return role;
