@@ -4,7 +4,7 @@ import reducer from './reducer';
 import {createStore} from 'redux'
 import {Provider} from 'react-redux';
 
-var store = createStore(reducer);
+const store = createStore(reducer);
 
 const app = () => (
 
