@@ -21,5 +21,5 @@
 
 ./Library/Android/sdk/emulator/emulator -list-avds
 
-./Library/Android/sdk/emulator/emulator @Pixel_XL_API_25
+~/Library/Android/sdk/emulator/emulator @Pixel_XL_API_25
 
