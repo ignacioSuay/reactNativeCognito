@@ -1,0 +1,106 @@
+{
+	"name": "reactiveNativeLogin",
+	"projectId": "15fc4aab-b4ef-45c0-85e2-5e883b572e7b",
+	"region": "eu-west-1",
+	"state": "NORMAL",
+	"createdDate": "2018-05-10T11:43:07.925Z",
+	"lastUpdatedDate": "2018-05-10T11:43:19.573Z",
+	"consoleUrl": "https://console.aws.amazon.com/mobilehub/home#/15fc4aab-b4ef-45c0-85e2-5e883b572e7b/build",
+	"resources": [
+		{
+			"type": "AWS::Pinpoint::AnalyticsApplication",
+			"name": "reactivenativelogin_MobileHub",
+			"arn": "bab92b6822e24c3e8be9bca056e9dedd",
+			"feature": "analytics",
+			"attributes": {
+				"lastUpdateRequestID": "b0f5ab53-c3fa-4f14-be99-e7a993c5a0c0"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "reactivenativelogin_mobileanalytics_MOBILEHUB_1933883807",
+			"arn": null,
+			"feature": "analytics",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "b0f5ab53-c3fa-4f14-be99-e7a993c5a0c0",
+				"role": "reactivenativelogin_unauth_MOBILEHUB_1933883807"
+			}
+		},
+		{
+			"type": "AWS::Cognito::IdentityPool",
+			"name": "reactivenativelogin_MOBILEHUB_1933883807",
+			"arn": "eu-west-1:ba6dc832-47e3-42ab-8cda-86a42e39d254",
+			"feature": "user-signin",
+			"attributes": {
+				"lastUpdateRequestID": "b0f5ab53-c3fa-4f14-be99-e7a993c5a0c0",
+				"poolid": "eu-west-1:ba6dc832-47e3-42ab-8cda-86a42e39d254",
+				"roleARNs": "arn:aws:iam::963419467435:role/reactivenativelogin_unauth_MOBILEHUB_1933883807"
+			}
+		},
+		{
+			"type": "AWS::IAM::Role",
+			"name": "reactivenativelogin_unauth_MOBILEHUB_1933883807",
+			"arn": "arn:aws:iam::963419467435:role/reactivenativelogin_unauth_MOBILEHUB_1933883807",
+			"feature": "user-signin",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "b0f5ab53-c3fa-4f14-be99-e7a993c5a0c0"
+			}
+		},
+		{
+			"type": "AWS::S3::Bucket",
+			"name": "reactivenativelogin-hosting-mobilehub-1933883807",
+			"arn": null,
+			"feature": "hosting",
+			"attributes": {
+				"lastUpdateRequestID": "b0f5ab53-c3fa-4f14-be99-e7a993c5a0c0",
+				"region": "eu-west-1",
+				"s3-bucket-console-url": "https://s3.console.aws.amazon.com/s3/buckets/reactivenativelogin-hosting-mobilehub-1933883807",
+				"s3-bucket-website-url": "https://s3.amazonaws.com/reactivenativelogin-hosting-mobilehub-1933883807"
+			}
+		},
+		{
+			"type": "AWS::CloudFront::Distribution",
+			"name": "d1md7y18ej36du.cloudfront.net",
+			"arn": null,
+			"feature": "hosting",
+			"attributes": {
+				"id": "E2HAXK9SOYG4X1",
+				"lastUpdateRequestID": "b0f5ab53-c3fa-4f14-be99-e7a993c5a0c0"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "reactivenativelogin_hosting_MOBILEHUB_1933883807",
+			"arn": null,
+			"feature": "hosting",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "b0f5ab53-c3fa-4f14-be99-e7a993c5a0c0",
+				"role": "reactivenativelogin_unauth_MOBILEHUB_1933883807"
+			}
+		},
+		{
+			"type": "AWS::S3::Bucket",
+			"name": "reactivenativelogin-deployments-mobilehub-1933883807",
+			"arn": null,
+			"feature": "common",
+			"attributes": {
+				"region": "eu-west-1",
+				"s3-bucket-console-url": "https://s3.console.aws.amazon.com/s3/buckets/reactivenativelogin-deployments-mobilehub-1933883807"
+			}
+		},
+		{
+			"type": "AWS::CloudFormation::Stack",
+			"name": "Development",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"primary": "true",
+				"region": "eu-west-1",
+				"stateSummary": "NOT_YET_DEPLOYED"
+			}
+		}
+	]
+}
