@@ -3,7 +3,10 @@ import AppContainer from './components/AppContainer'
 import reducer from './reducer';
 import {createStore} from 'redux'
 import {Provider} from 'react-redux';
+import Amplify from 'aws-amplify';
+import aws_exports from './src/aws-exports';
 
+Amplify.configure(aws_exports);
 const store = createStore(reducer);
 
 const app = () => (

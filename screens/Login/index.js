@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, TextInput, Button, Text} from 'react-native';
 import {connect} from "react-redux";
+import {Auth} from 'aws-amplify';
 
 class Login extends React.Component {
 
@@ -13,42 +14,63 @@ class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        this.username = "";
-        this.password = "";
+        this.state = {
+            username: '',
+            password: '',
+            email: ''
+        }
     }
-
-    _handleUsername = event => {
-        this.username = event.nativeEvent.text;
-    };
-
-    _handlePassword = event => {
-        this.password = event.nativeEvent.text;
-    };
 
     _loginOnPress = () => {
         console.log("button pressed");
         this.props.navigation.navigate('Details');
     };
 
-    _loginAsAdmin = () => {
-        fetch('https://q7eze12knl.execute-api.eu-west-1.amazonaws.com/prod/persons/2')
-            .then(response => response.json())
-            .then(responseJson => {
-                console.log(responseJson);
-                this.props.change(responseJson.name.S);
-            }).catch(error => {
-            console.log(error)
-        });
-    };
+    setUserProps(key, value) {
+        this.setState({
+            [key]: value
+        })
+    }
+
+    signUp() {
+        console.log(JSON.stringify(this.state))
+        Auth.signUp({
+            username: this.state.username,
+            password: this.state.password,
+            attributes: {
+                email: this.state.email
+            }
+        })
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+
+    }
+
+    // _loginAsAdmin = () => {
+    //     fetch('https://q7eze12knl.execute-api.eu-west-1.amazonaws.com/prod/persons/2')
+    //         .then(response => response.json())
+    //         .then(responseJson => {
+    //             console.log(responseJson);
+    //             this.props.change(responseJson.name.S);
+    //         }).catch(error => {
+    //         console.log(error)
+    //     });
+    // };
 
     render() {
         return (
             <View style={styles.container}>
-                <TextInput style={styles.input} onSubmitEditing={this._handleUsername} placeholder={"Username"}/>
-                <TextInput style={styles.input} onSubmitEditing={this._handlePassword} placeholder={"Password"}/>
-                <Text>You are logged as {this.props.role}</Text>
+                <TextInput style={styles.input} onChangeText={value => {
+                    this.setUserProps("username", value)
+                }} placeholder={"Username"}/>
+                <TextInput style={styles.input} onChangeText={value => {
+                    this.setUserProps("password", value)
+                }} placeholder={"Password"}/>
+                <TextInput style={styles.input} onChangeText={value => {
+                    this.setUserProps("email", value)
+                }} placeholder={"Email"}/>
                 <Button title="Login" onPress={this._loginOnPress}/>
-                <Button title="Login as admin" onPress={this._loginAsAdmin}/>
+                <Button title="Sign up!" onPress={this.signUp.bind(this)}/>
 
             </View>
         );
