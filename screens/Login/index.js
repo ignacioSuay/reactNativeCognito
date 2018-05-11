@@ -17,7 +17,8 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-            email: ''
+            email: '',
+            isSignedUp: false
         }
     }
 
@@ -65,16 +66,28 @@ class Login extends React.Component {
                 }} placeholder={"Username"}/>
                 <TextInput style={styles.input} onChangeText={value => {
                     this.setUserProps("password", value)
-                }} placeholder={"Password"}/>
+                }} placeholder={"Password"} secureTextEntry={true}/>
                 <TextInput style={styles.input} onChangeText={value => {
                     this.setUserProps("email", value)
                 }} placeholder={"Email"}/>
                 <Button title="Login" onPress={this._loginOnPress}/>
                 <Button title="Sign up!" onPress={this.signUp.bind(this)}/>
+                <SignUp hola={false}/>
 
             </View>
         );
     }
+}
+
+function SignUp(props) {
+
+    const hola = props.hola;
+    if (hola) {
+        return <Text>Holaaa</Text>
+    } else {
+        return <Text>Adios</Text>
+    }
+
 }
 
 const styles = StyleSheet.create({
