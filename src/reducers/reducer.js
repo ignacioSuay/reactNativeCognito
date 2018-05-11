@@ -4,7 +4,7 @@ function reducer(state, action) {
         return {role: "anonymous"}
     }
 
-    var role = state.role;
+    const role = state.role;
 
     switch (action.type) {
         case "ADD_ROLE":
