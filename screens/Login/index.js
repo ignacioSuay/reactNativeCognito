@@ -41,8 +41,8 @@ class Login extends React.Component {
                 email: this.state.email
             }
         })
-            .then(data => console.log(data))
-            .catch(error => console.log(error));
+            .then(data => console.log("successful! " + JSON.stringify(data)))
+            .catch(error => console.log(JSON.stringify(error)));
 
     }
 
