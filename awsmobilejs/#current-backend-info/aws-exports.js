@@ -7,19 +7,23 @@
 // AWS Mobile Hub Project Constants
 const awsmobile = {
     'aws_app_analytics': 'enable',
-    'aws_cognito_identity_pool_id': 'eu-west-1:ba6dc832-47e3-42ab-8cda-86a42e39d254',
+    'aws_cognito_identity_pool_id': 'eu-west-1:e9a25206-0292-482b-90b9-2573c674562c',
     'aws_cognito_region': 'eu-west-1',
     'aws_content_delivery': 'enable',
-    'aws_content_delivery_bucket': 'reactivenativelogin-hosting-mobilehub-1933883807',
+    'aws_content_delivery_bucket': 'reactnativelogin-hosting-mobilehub-330739228',
     'aws_content_delivery_bucket_region': 'eu-west-1',
     'aws_content_delivery_cloudfront': 'enable',
-    'aws_content_delivery_cloudfront_domain': 'd1md7y18ej36du.cloudfront.net',
-    'aws_mobile_analytics_app_id': 'bab92b6822e24c3e8be9bca056e9dedd',
+    'aws_content_delivery_cloudfront_domain': 'd1l9q01bv5krce.cloudfront.net',
+    'aws_mobile_analytics_app_id': 'e598fa89c114445a8d88e47bf1f2a70e',
     'aws_mobile_analytics_app_region': 'us-east-1',
-    'aws_project_id': '15fc4aab-b4ef-45c0-85e2-5e883b572e7b',
-    'aws_project_name': 'reactiveNativeLogin',
+    'aws_project_id': '77039ab8-f4dd-43cf-a55c-95231eca42fb',
+    'aws_project_name': 'reactNativeLogin',
     'aws_project_region': 'eu-west-1',
-    'aws_resource_name_prefix': 'reactivenativelogin-mobilehub-1933883807',
+    'aws_resource_name_prefix': 'reactnativelogin-mobilehub-330739228',
+    'aws_sign_in_enabled': 'enable',
+    'aws_user_pools': 'enable',
+    'aws_user_pools_id': 'eu-west-1_abVtWoVjK',
+    'aws_user_pools_web_client_id': '69aqtkcd8rhpd9j02h4vc1493u',
 }
 
 export default awsmobile;
