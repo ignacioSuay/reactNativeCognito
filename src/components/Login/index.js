@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, TextInput, Button, Text} from 'react-native';
-import {connect} from "react-redux";
 import {Auth} from 'aws-amplify';
+import {connect} from "react-redux";
 
 class Login extends React.Component {
 
@@ -16,15 +16,17 @@ class Login extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: '',
-            email: '',
-            isSignedUp: false
+            password: ''
         }
     }
 
-    _loginOnPress = () => {
+    login = () => {
         console.log("button pressed");
-        this.props.navigation.navigate('Details');
+    };
+
+    signUp = () => {
+        console.log("sign up button pressed");
+        this.props.navigation.navigate('SignUp');
     };
 
     setUserProps(key, value) {
@@ -32,31 +34,6 @@ class Login extends React.Component {
             [key]: value
         })
     }
-
-    signUp() {
-        console.log(JSON.stringify(this.state))
-        Auth.signUp({
-            username: this.state.username,
-            password: this.state.password,
-            attributes: {
-                email: this.state.email
-            }
-        })
-            .then(data => console.log("successful! " + JSON.stringify(data)))
-            .catch(error => console.log(JSON.stringify(error)));
-
-    }
-
-    // _loginAsAdmin = () => {
-    //     fetch('https://q7eze12knl.execute-api.eu-west-1.amazonaws.com/prod/persons/2')
-    //         .then(response => response.json())
-    //         .then(responseJson => {
-    //             console.log(responseJson);
-    //             this.props.change(responseJson.name.S);
-    //         }).catch(error => {
-    //         console.log(error)
-    //     });
-    // };
 
     render() {
         return (
@@ -67,27 +44,12 @@ class Login extends React.Component {
                 <TextInput style={styles.input} onChangeText={value => {
                     this.setUserProps("password", value)
                 }} placeholder={"Password"} secureTextEntry={true}/>
-                <TextInput style={styles.input} onChangeText={value => {
-                    this.setUserProps("email", value)
-                }} placeholder={"Email"}/>
-                <Button title="Login" onPress={this._loginOnPress}/>
-                <Button title="Sign up!" onPress={this.signUp.bind(this)}/>
-                <SignUp hola={false}/>
+                <Button title="Login" onPress={this.login}/>
+                <Button title="Sign Up" onPress={this.signUp}/>
 
             </View>
         );
     }
-}
-
-function SignUp(props) {
-
-    const hola = props.hola;
-    if (hola) {
-        return <Text>Holaaa</Text>
-    } else {
-        return <Text>Adios</Text>
-    }
-
 }
 
 const styles = StyleSheet.create({
@@ -121,3 +83,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
