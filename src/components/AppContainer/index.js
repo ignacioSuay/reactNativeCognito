@@ -1,5 +1,6 @@
 import React from 'react';
-import Login from '../../screens/Login'
+import Login from '../../components/Login'
+import SignUp from '../../components/SignUp'
 import Details from '../../screens/Details'
 import {StackNavigator} from 'react-navigation';
 
@@ -19,9 +20,13 @@ const RootStack = StackNavigator(
         Login: {
             screen: Login,
         },
+        SignUp: {
+            screen: SignUp,
+        },
         Details: {
             screen: Details,
         }
+
     },
     {
         initialRouteName: 'Login',
