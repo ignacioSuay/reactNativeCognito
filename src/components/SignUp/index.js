@@ -19,7 +19,8 @@ class SignUp extends React.Component {
             username: '',
             password: '',
             email: '',
-            isSignedUp: false
+            code: '',
+            isSignedUp: true
         }
     }
 
@@ -35,7 +36,7 @@ class SignUp extends React.Component {
     }
 
     signUp() {
-        console.log(JSON.stringify(this.state))
+        console.log("signing in");
         Auth.signUp({
             username: this.state.username,
             password: this.state.password,
@@ -43,26 +44,55 @@ class SignUp extends React.Component {
                 email: this.state.email
             }
         })
-            .then(data => console.log("successful! " + JSON.stringify(data)))
+            .then(data => {
+                console.log("successful! " + JSON.stringify(data));
+                this.setState({isSignedUp: true});
+            })
             .catch(error => console.log(JSON.stringify(error)));
+    }
 
+    confirmSignUp() {
+        console.log(JSON.stringify(this.state));
+        Auth.confirmSignUp(this.state.username, this.state.code)
+            .then(data => {
+                console.log("successful! " + JSON.stringify(data));
+                this.props.navigation.navigate('Login');
+            })
+            .catch(error => console.log(JSON.stringify(error)));
     }
 
 
-
     render() {
+        console.log("render");
+        const {isSignedUp} = this.state;
+
+
         return (
+
             <View style={styles.container}>
                 <TextInput style={styles.input} onChangeText={value => {
                     this.setUserProps("username", value)
                 }} placeholder={"Username"}/>
-                <TextInput style={styles.input} onChangeText={value => {
-                    this.setUserProps("password", value)
-                }} placeholder={"Password"} secureTextEntry={true}/>
-                <TextInput style={styles.input} onChangeText={value => {
-                    this.setUserProps("email", value)
-                }} placeholder={"Email"}/>
-                <Button title="Sign up!" onPress={this.signUp.bind(this)}/>
+
+                {!isSignedUp && (
+                    <View>
+                        <TextInput style={styles.input} onChangeText={value => {
+                            this.setUserProps("password", value)
+                        }} placeholder={"Password"} secureTextEntry={true}/>
+                        < TextInput style={styles.input} onChangeText={value => {
+                            this.setUserProps("email", value)
+                        }} placeholder={"Email"}/>
+                        <Button title="Sign up!" onPress={this.signUp.bind(this)}/>
+                    </View>)}
+
+                {isSignedUp && (
+                    <View>
+                        <TextInput style={styles.input} onChangeText={value => {
+                            this.setUserProps("code", value)
+                        }} placeholder={"Validation Code"}/>
+                        < Button title="Validate" onPress={this.confirmSignUp.bind(this)}/>
+                    </View>
+                )}
             </View>
         );
     }
