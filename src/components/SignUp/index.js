@@ -20,14 +20,9 @@ class SignUp extends React.Component {
             password: '',
             email: '',
             code: '',
-            isSignedUp: true
+            isSignedUp: false
         }
     }
-
-    _loginOnPress = () => {
-        console.log("button pressed");
-        this.props.navigation.navigate('Details');
-    };
 
     setUserProps(key, value) {
         this.setState({
@@ -57,6 +52,7 @@ class SignUp extends React.Component {
             .then(data => {
                 console.log("successful! " + JSON.stringify(data));
                 this.props.navigation.navigate('Login');
+                this.setState({isSignedUp: false});
             })
             .catch(error => console.log(JSON.stringify(error)));
     }
