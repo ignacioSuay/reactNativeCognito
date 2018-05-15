@@ -21,7 +21,15 @@ class Login extends React.Component {
     }
 
     login = () => {
-        console.log("button pressed");
+        console.log("logging");
+        Auth.signIn(this.state.username, this.state.password)
+            .then(user => {
+                console.log(JSON.stringify(user));
+                this.props.navigation.navigate('Details');
+                console.log("groups " + user.signInUserSession.accessToken.payload["cognito:groups"][0]);
+            })
+            .catch(error => console.log(JSON.stringify(error)));
+
     };
 
     signUp = () => {
@@ -38,15 +46,18 @@ class Login extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <TextInput style={styles.input} onChangeText={value => {
-                    this.setUserProps("username", value)
-                }} placeholder={"Username"}/>
-                <TextInput style={styles.input} onChangeText={value => {
-                    this.setUserProps("password", value)
-                }} placeholder={"Password"} secureTextEntry={true}/>
-                <Button title="Login" onPress={this.login}/>
-                <Button title="Sign Up" onPress={this.signUp}/>
-
+                <View style={styles.top}>
+                    <TextInput style={styles.input} onChangeText={value => {
+                        this.setUserProps("username", value)
+                    }} placeholder={"Username"}/>
+                    <TextInput style={styles.input} onChangeText={value => {
+                        this.setUserProps("password", value)
+                    }} placeholder={"Password"} secureTextEntry={true}/>
+                    <Button title="Login" onPress={this.login}/>
+                </View>
+                <View style={styles.signUp}>
+                    <Button title="Sign Up" onPress={this.signUp}/>
+                </View>
             </View>
         );
     }
@@ -56,22 +67,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#33A8FF',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
         paddingTop: 30
     },
     top: {
         flex: 1,
-        backgroundColor: '#FFF',
         alignItems: 'center',
-        margin: 30
     },
     input: {
         fontSize: 20,
         width: 200,
         margin: 3,
         padding: 10
+    },
+    signUp: {
+        flex: 2,
+        alignItems: 'flex-end',
+        justifyContent: 'flex-start',
+        padding: 30
     }
+
 });
 
 const mapStateToProps = (state) => {
