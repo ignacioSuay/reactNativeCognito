@@ -14,8 +14,9 @@
 
 3.2 In the script field write: "android". You could also write here "start" and then choose the android or ios option.
 
-4. You will need to run your simulator or deveice with JS debug enable
+4. You will need to run your simulator or device with JS debug enable
 
+note: if you an error in the simulator like: "Cannot connect with the debugger", try to close all the chrome windows and debug again from webstorm
 
 # Run the emulator from the command line
 
